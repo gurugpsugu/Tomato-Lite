@@ -6,6 +6,7 @@
  */
 import { NextResponse } from "next/server";
 import { sql } from "@/db/client";
+import { moodFromRating } from "@/lib/mood";
 
 type ReviewRow = { id: number; rating: number; comment: string; created_at: string };
 
@@ -55,6 +56,7 @@ export async function GET(
     area: restaurant.area,
     averageRating,
     totalReviews,
+    mood: moodFromRating(averageRating), // computed fresh, never stored
     latestReview: rows.length > 0 ? toReview(rows[0]) : null,
     reviews: rows.slice(1).map(toReview),
   });

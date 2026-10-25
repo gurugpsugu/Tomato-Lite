@@ -18,6 +18,7 @@ type RestaurantData = {
   area: string;
   averageRating: number | null;
   totalReviews: number;
+  mood: { label: string; color: string; soft: string };
   latestReview: Review | null;
   reviews: Review[];
 };
@@ -84,14 +85,25 @@ export default function RestaurantPage() {
           </div>
         ) : (
           <>
-            {/* 2 — the big number, first thing the eye lands on */}
+            {/* 2 — the big number, first thing the eye lands on, colored by mood */}
             <div className="mt-12 flex items-end gap-3">
-              <p className="text-7xl leading-none tracking-tight">
+              <p
+                className="text-7xl leading-none tracking-tight"
+                style={{ color: data.mood.color }}
+              >
                 {data.averageRating}
               </p>
-              <p className="pb-1 text-sm text-muted">
-                {data.totalReviews} review{data.totalReviews === 1 ? "" : "s"}
-              </p>
+              <div className="flex flex-col items-start gap-1 pb-1">
+                <span
+                  className="rounded-full px-2.5 py-0.5 text-xs font-semibold"
+                  style={{ backgroundColor: data.mood.soft, color: data.mood.color }}
+                >
+                  {data.mood.label}
+                </span>
+                <p className="text-sm text-muted">
+                  {data.totalReviews} review{data.totalReviews === 1 ? "" : "s"}
+                </p>
+              </div>
             </div>
 
             {/* 3 — the latest review, sitting clearly apart from the rest */}
