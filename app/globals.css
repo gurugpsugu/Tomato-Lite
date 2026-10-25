@@ -58,10 +58,40 @@ body {
   animation: twinkle 2.4s ease-in-out infinite;
 }
 
+/* Digits fall from above, blur into focus, bounce-settle into place. */
+@keyframes char-drop {
+  0% {
+    transform: translateY(-160%);
+    opacity: 0;
+    filter: blur(6px);
+  }
+  55% {
+    transform: translateY(2%);
+    opacity: 1;
+    filter: blur(0);
+  }
+  72% {
+    transform: translateY(-8%);
+  }
+  88% {
+    transform: translateY(3%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.cascade-char {
+  display: inline-block;
+  animation: char-drop 0.65s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .steam-wisp,
   .sparkle {
     animation: none;
     opacity: 0.35;
+  }
+  .cascade-char {
+    animation: none;
   }
 }

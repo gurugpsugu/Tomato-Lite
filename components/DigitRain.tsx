@@ -37,8 +37,8 @@ export default function DigitRain({
     canvas.height = height * dpr;
     ctx.scale(dpr, dpr);
 
-    const fontSize = 15;
-    const gap = 18;
+    const fontSize = 16;
+    const gap = 20;
     const columns = Math.max(1, Math.floor(w / gap));
     const rows = Math.floor(height / fontSize);
     // Negative start positions so columns don't all land at once.
@@ -59,7 +59,7 @@ export default function DigitRain({
       lastDraw = now;
 
       // Translucent black veil — old digits melt into trails by themselves.
-      ctx.fillStyle = "rgba(18, 15, 11, 0.22)";
+      ctx.fillStyle = "rgba(18, 15, 11, 0.24)";
       ctx.fillRect(0, 0, w, height);
       ctx.font = `${fontSize}px ui-monospace, monospace`;
 
@@ -77,7 +77,7 @@ export default function DigitRain({
         }
       }
 
-      if (now - started > 2400 && !fadeStarted) {
+      if (now - started > 2900 && !fadeStarted) {
         fadeStarted = true;
         setFading(true);
         cancelAnimationFrame(raf);

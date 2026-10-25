@@ -49,7 +49,7 @@ export default function RestaurantPage() {
   if (notFound) {
     return (
       <main className="min-h-screen">
-        <div className="mx-auto max-w-[560px] px-6 py-24">
+        <div className="mx-auto max-w-[600px] px-6 py-24">
           <p className="text-sm text-muted">Restaurant not found.</p>
         </div>
       </main>
@@ -59,7 +59,7 @@ export default function RestaurantPage() {
   if (!data) {
     return (
       <main className="min-h-screen">
-        <div className="mx-auto max-w-[560px] px-6 py-24">
+        <div className="mx-auto max-w-[600px] px-6 py-24">
           <p className="text-sm text-muted">Loading…</p>
         </div>
       </main>
@@ -70,18 +70,29 @@ export default function RestaurantPage() {
 
   return (
     <main className="min-h-screen">
-      <div className="mx-auto max-w-[560px] px-6 py-10">
+      <div className="mx-auto max-w-[600px] px-6 py-10">
         {/* Hero — the burrito banner with the name laid over it */}
-        <section className="relative overflow-hidden rounded-2xl bg-[#14100c] px-6 pb-11 pt-12 text-white">
-          <BurritoArt className="pointer-events-none absolute -bottom-2 -right-4 w-52 opacity-90 sm:w-72" />
-          <span className="sparkle absolute left-8 top-6 text-xs" style={{ animationDelay: "0.2s" }}>✦</span>
-          <span className="sparkle absolute left-24 top-3 text-[10px]" style={{ animationDelay: "1.1s" }}>✦</span>
-          <span className="sparkle absolute right-10 top-8 text-[10px]" style={{ animationDelay: "0.7s" }}>✦</span>
-          <div className="relative max-w-[300px] sm:max-w-[360px]">
-            <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+        <section className="relative min-h-56 overflow-hidden rounded-3xl bg-[#14100c] px-7 pb-14 pt-16 text-white sm:min-h-64">
+          {/* warm ember glow radiating from behind the burrito */}
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(circle at 82% 62%, rgba(194, 65, 12, 0.4), transparent 62%)",
+            }}
+            aria-hidden="true"
+          />
+          <BurritoArt className="pointer-events-none absolute -bottom-3 -right-5 w-60 -rotate-3 opacity-95 sm:w-96" />
+          <span className="sparkle absolute left-9 top-8 text-sm" style={{ animationDelay: "0.2s" }}>✦</span>
+          <span className="sparkle absolute left-32 top-4 text-xs" style={{ animationDelay: "1.1s" }}>✶</span>
+          <span className="sparkle absolute right-12 top-10 text-sm" style={{ animationDelay: "0.7s" }}>✦</span>
+          <span className="sparkle absolute left-52 top-16 text-xs" style={{ animationDelay: "1.6s" }}>✶</span>
+          <span className="sparkle absolute right-40 bottom-12 text-xs" style={{ animationDelay: "0.4s" }}>✦</span>
+          <div className="relative max-w-[320px] sm:max-w-[380px]">
+            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
               {data.name}
             </h1>
-            <p className="mt-2 text-sm text-white/60">
+            <p className="mt-3 text-sm text-white/60 sm:text-base">
               {data.cuisine} · {data.area}
             </p>
           </div>
@@ -99,26 +110,28 @@ export default function RestaurantPage() {
           </div>
         ) : (
           <>
-            {/* The rating, with a short burst of digits raining down behind it */}
-            <section className="relative mt-4 overflow-hidden rounded-2xl bg-[#120f0b]">
+            {/* The rating, with digits raining down behind it */}
+            <section className="relative mt-4 overflow-hidden rounded-3xl bg-[#120f0b]">
               <DigitRain color={data.mood.color} />
-              <div className="relative flex items-center justify-center gap-4 px-6 py-12">
+              <div className="relative flex items-center justify-center gap-5 px-6 py-16">
                 <CascadeNumber
                   value={data.averageRating}
                   color={data.mood.color}
-                  className="font-mono text-7xl leading-none tracking-tight"
+                  className="font-mono text-8xl font-bold leading-none tracking-tight sm:text-9xl"
+                  textShadow={`0 0 30px ${data.mood.color}88, 0 0 90px ${data.mood.color}44`}
                 />
                 <div className="flex flex-col items-start gap-2">
                   <span
-                    className="rounded-full px-2.5 py-0.5 text-xs font-semibold"
+                    className="rounded-full px-3.5 py-1 text-sm font-bold"
                     style={{
                       backgroundColor: data.mood.soft,
                       color: data.mood.color,
+                      boxShadow: `0 0 24px -4px ${data.mood.color}66`,
                     }}
                   >
                     {data.mood.label}
                   </span>
-                  <p className="text-sm text-white/50">
+                  <p className="text-sm text-white/60">
                     {data.totalReviews} review
                     {data.totalReviews === 1 ? "" : "s"}
                   </p>
@@ -128,14 +141,14 @@ export default function RestaurantPage() {
 
             {/* the latest review, sitting clearly apart from the rest */}
             {data.latestReview && (
-              <article className="mt-8 rounded-xl border border-border bg-accent-soft p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-accent">
+              <article className="mt-10 rounded-xl border border-border bg-accent-soft p-6">
+                <p className="text-xs font-bold uppercase tracking-widest text-accent">
                   Latest review
                 </p>
-                <p className="mt-3 text-xs text-muted">
+                <p className="mt-3 text-xs font-semibold text-muted">
                   {data.latestReview.rating} / 5
                 </p>
-                <p className="mt-1">{data.latestReview.comment}</p>
+                <p className="mt-1 text-[15px]">{data.latestReview.comment}</p>
               </article>
             )}
 
@@ -144,7 +157,10 @@ export default function RestaurantPage() {
               <ul className="mt-8 divide-y divide-border">
                 {data.reviews.map((review) => (
                   <li key={review.id} className="py-4">
-                    <p className="text-xs text-muted">{review.rating} / 5</p>
+                    <p className="text-xs font-semibold">
+                      <span className="text-accent">★</span>{" "}
+                      <span className="text-muted">{review.rating} / 5</span>
+                    </p>
                     <p className="mt-1 text-sm">{review.comment}</p>
                   </li>
                 ))}
