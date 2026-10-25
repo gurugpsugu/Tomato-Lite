@@ -1,15 +1,25 @@
 /**
  * The Tomato Lite mark — Apple-logo logic: one clean silhouette that reads
- * instantly at any size. One tomato-red body, one stem, one pair of leaves.
- * Lives in the header (32px) and as the favicon (16px), one shape for both.
+ * instantly at any size. One tomato-red body, one stem, one pair of leaves,
+ * and the bite — cut out with an SVG mask, so it is a true notch in the
+ * shape, not a background-coloured patch. Recognizable at 16px (the favicon),
+ * 32px (the header), and 512px (an app icon someday).
  */
 export default function TomatoLogo({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 64 64" className={className} role="img" aria-label="Tomato Lite">
+      <defs>
+        {/* the bite — one mouthful of circle, top-right, like the Apple mark */}
+        <mask id="tomato-bite">
+          <rect width="64" height="64" fill="white" />
+          <circle cx="57" cy="29" r="10" fill="black" />
+        </mask>
+      </defs>
       {/* body — one soft egg shape, flat colours, no detail */}
       <path
         d="M32 17 C 43 17 51 25 51 36 C 51 47 43 55 32 55 C 21 55 13 47 13 36 C 13 25 21 17 32 17 Z"
         fill="var(--color-accent, #ff4530)"
+        mask="url(#tomato-bite)"
       />
       {/* the Apple-style dimple at the top, cut with the backdrop colour */}
       <circle cx="32" cy="17.4" r="2.1" fill="#0a0d11" />
