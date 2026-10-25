@@ -11,7 +11,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import BurritoArt from "@/components/BurritoArt";
 import DigitRain from "@/components/DigitRain";
 import CascadeNumber from "@/components/CascadeNumber";
 
@@ -71,28 +70,36 @@ export default function RestaurantPage() {
   return (
     <main className="min-h-screen">
       <div className="mx-auto max-w-[600px] px-6 py-10">
-        {/* Hero — the burrito banner with the name laid over it */}
-        <section className="relative min-h-56 overflow-hidden rounded-3xl bg-[#14100c] px-7 pb-14 pt-16 text-white sm:min-h-64">
-          {/* warm ember glow radiating from behind the burrito */}
+        {/* Hero — a real burrito photo behind the name, dark scrim for readability */}
+        <section className="relative min-h-64 overflow-hidden rounded-3xl bg-[#14100c] px-7 pb-16 pt-20 text-white sm:min-h-72">
+          <img
+            src="/burrito.jpg"
+            alt=""
+            title="Photo by Leonardo Aquino, Pexels (free license)"
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+          />
+          {/* scrim: dark on the left where the name sits, photo shining on the right */}
           <div
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "radial-gradient(circle at 82% 62%, rgba(194, 65, 12, 0.4), transparent 62%)",
+                "linear-gradient(90deg, rgba(17, 13, 10, 0.92) 0%, rgba(17, 13, 10, 0.74) 42%, rgba(17, 13, 10, 0.22) 76%, rgba(17, 13, 10, 0.04) 100%)",
             }}
             aria-hidden="true"
           />
-          <BurritoArt className="pointer-events-none absolute -bottom-3 -right-5 w-60 -rotate-3 opacity-95 sm:w-96" />
           <span className="sparkle absolute left-9 top-8 text-sm" style={{ animationDelay: "0.2s" }}>✦</span>
           <span className="sparkle absolute left-32 top-4 text-xs" style={{ animationDelay: "1.1s" }}>✶</span>
           <span className="sparkle absolute right-12 top-10 text-sm" style={{ animationDelay: "0.7s" }}>✦</span>
           <span className="sparkle absolute left-52 top-16 text-xs" style={{ animationDelay: "1.6s" }}>✶</span>
           <span className="sparkle absolute right-40 bottom-12 text-xs" style={{ animationDelay: "0.4s" }}>✦</span>
           <div className="relative max-w-[320px] sm:max-w-[380px]">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+            <h1
+              className="text-4xl font-bold tracking-tight sm:text-5xl"
+              style={{ textShadow: "0 2px 14px rgba(0,0,0,0.55)" }}
+            >
               {data.name}
             </h1>
-            <p className="mt-3 text-sm text-white/60 sm:text-base">
+            <p className="mt-3 text-sm text-white/70 sm:text-base">
               {data.cuisine} · {data.area}
             </p>
           </div>
