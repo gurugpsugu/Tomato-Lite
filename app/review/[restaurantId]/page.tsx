@@ -43,7 +43,7 @@ export default function WriteReviewPage() {
     return (
       <main className="min-h-screen">
         <div className="mx-auto max-w-[560px] px-6 py-24">
-          <p className="text-sm text-muted">This restaurant does not exist.</p>
+          <p className="font-mono text-sm text-muted">This restaurant does not exist.</p>
         </div>
       </main>
     );
@@ -79,12 +79,10 @@ export default function WriteReviewPage() {
   return (
     <main className="min-h-screen">
       <form onSubmit={submit} className="mx-auto max-w-[560px] px-6 py-16">
-        <p className="text-xs font-medium uppercase tracking-widest text-muted">
-          Write a review
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
+          // Write a Review
         </p>
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight">
-          {name ?? "Loading…"}
-        </h1>
+        <h1 className="mt-2 text-3xl font-bold tracking-tight">{name ?? "Loading…"}</h1>
 
         <div
           role="radiogroup"
@@ -103,8 +101,8 @@ export default function WriteReviewPage() {
               onMouseEnter={() => setHover(star)}
               className={`text-3xl leading-none transition-colors ${
                 (hover || rating) >= star
-                  ? "text-accent"
-                  : "text-border hover:text-muted"
+                  ? "text-accent drop-shadow-[0_0_6px_rgba(255,69,48,0.55)]"
+                  : "text-white/15 hover:text-white/40"
               }`}
             >
               ★
@@ -112,7 +110,10 @@ export default function WriteReviewPage() {
           ))}
         </div>
 
-        <label htmlFor="comment" className="mt-10 block text-sm font-medium">
+        <label
+          htmlFor="comment"
+          className="mt-10 block font-mono text-[10px] uppercase tracking-[0.3em] text-white/50"
+        >
           Your comment
         </label>
         <textarea
@@ -121,13 +122,13 @@ export default function WriteReviewPage() {
           onChange={(event) => setComment(event.target.value)}
           rows={4}
           placeholder="What should other people know?"
-          className="mt-2 w-full rounded-lg border border-border bg-white p-3 text-sm outline-none focus:border-accent"
+          className="mt-3 w-full rounded-lg border border-white/10 bg-[#0f141a] p-3 text-sm text-foreground outline-none focus:border-accent focus:shadow-[0_0_16px_rgba(255,69,48,0.2)]"
         />
 
         <button
           type="submit"
           disabled={!canSubmit}
-          className="mt-8 rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-40"
+          className="mt-8 rounded-lg bg-accent px-5 py-2.5 text-sm font-bold tracking-wide text-white shadow-[0_0_22px_rgba(255,69,48,0.35)] disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none"
         >
           {submitting ? "Sending…" : "Submit"}
         </button>
@@ -135,7 +136,7 @@ export default function WriteReviewPage() {
         {error && (
           <p
             role="alert"
-            className="mt-6 rounded-lg border border-border bg-accent-soft p-3 text-sm"
+            className="mt-6 rounded-lg border border-accent/40 bg-accent-soft p-3 text-sm text-foreground"
           >
             {error}
           </p>

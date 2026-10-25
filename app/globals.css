@@ -1,13 +1,14 @@
 @import "tailwindcss";
 
-/* The whole palette: off-white, near-black, one warm accent. Nothing else. */
+/* CYBERTECH: near-black glass, a thin engineering grid, one neon tomato accent. */
 :root {
-  --background: #faf9f7;
-  --foreground: #1c1b19;
-  --muted: #6b6863;
-  --border: #e5e2dd;
-  --accent: #c2410c;              /* warm terracotta — used sparingly */
-  --accent-soft: rgba(194, 65, 12, 0.05);
+  --background: #0a0d11;
+  --foreground: #e6edf3;
+  --muted: #8a93a1;
+  --border: #1c2530;
+  --accent: #ff4530;
+  --accent-soft: rgba(255, 69, 48, 0.09);
+  --grid: rgba(148, 163, 184, 0.055);
 }
 
 @theme inline {
@@ -22,36 +23,23 @@
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image:
+    radial-gradient(ellipse 90% 50% at 50% -10%, rgba(255, 69, 48, 0.08), transparent),
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 100% 100%, 44px 44px, 44px 44px;
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-}
-
-/* Magic — steam that rises and sparkles that twinkle. */
-@keyframes steam {
-  0% {
-    opacity: 0;
-    transform: translateY(6px) scaleX(1);
-  }
-  35% {
-    opacity: 0.7;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-14px) scaleX(1.4);
-  }
-}
-.steam-wisp {
-  animation: steam 2.8s ease-in-out infinite;
 }
 
 @keyframes twinkle {
   0%,
   100% {
-    opacity: 0.1;
+    opacity: 0.08;
   }
   50% {
-    opacity: 0.8;
+    opacity: 0.85;
   }
 }
 .sparkle {
@@ -85,11 +73,26 @@ body {
   animation: char-drop 0.65s cubic-bezier(0.2, 0.9, 0.3, 1) both;
 }
 
+/* The status beacon on the header. */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.3);
+    opacity: 0;
+  }
+}
+.live-dot {
+  animation: pulse-ring 1.8s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .steam-wisp,
-  .sparkle {
+  .sparkle,
+  .live-dot {
     animation: none;
-    opacity: 0.35;
+    opacity: 0.4;
   }
   .cascade-char {
     animation: none;

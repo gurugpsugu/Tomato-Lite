@@ -58,8 +58,9 @@ export default function DigitRain({
       if (now - lastDraw < 55) return;
       lastDraw = now;
 
-      // Translucent black veil — old digits melt into trails by themselves.
-      ctx.fillStyle = "rgba(18, 15, 11, 0.24)";
+      // Translucent dark veil — old digits melt into trails by themselves.
+      // Matches the cybertech panel colour (#0B0F14).
+      ctx.fillStyle = "rgba(11, 15, 20, 0.24)";
       ctx.fillRect(0, 0, w, height);
       ctx.font = `${fontSize}px ui-monospace, monospace`;
 

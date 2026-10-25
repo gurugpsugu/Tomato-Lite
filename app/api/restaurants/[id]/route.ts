@@ -7,6 +7,7 @@
 import { NextResponse } from "next/server";
 import { sql } from "@/db/client";
 import { moodFromRating } from "@/lib/mood";
+import { timeAgo } from "@/lib/time";
 
 type ReviewRow = { id: number; rating: number; comment: string; created_at: string };
 
@@ -48,6 +49,8 @@ export async function GET(
     rating,
     comment,
     createdAt: created_at,
+    // Finished words, computed here — "2 hours ago". The frontend just prints.
+    timeAgo: timeAgo(created_at),
   });
 
   return NextResponse.json({
