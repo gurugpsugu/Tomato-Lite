@@ -80,7 +80,7 @@ export default function WriteReviewPage() {
     <main className="min-h-screen">
       <form onSubmit={submit} className="mx-auto max-w-[560px] px-6 py-16">
         <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
-          // Write a Review
+          {"// Write a Review"}
         </p>
         <h1 className="mt-2 text-3xl font-bold tracking-tight">{name ?? "Loading…"}</h1>
 

@@ -90,7 +90,7 @@ export default function RestaurantPage() {
           />
           {/* HUD label */}
           <p className="absolute left-4 top-3 font-mono text-[10px] uppercase tracking-[0.3em] text-white/50">
-            // Restaurant Profile
+            {"// Restaurant Profile"}
           </p>
           {/* HUD corner brackets */}
           <span aria-hidden="true" className="pointer-events-none absolute left-0 top-0 h-4 w-4 border-l-2 border-t-2 border-accent" />
@@ -137,7 +137,7 @@ export default function RestaurantPage() {
             <section className="relative mt-4 overflow-hidden rounded-2xl border border-white/10 bg-[#0b0f14]">
               <DigitRain color={data.mood.color} />
               <p className="absolute left-4 top-3 font-mono text-[10px] uppercase tracking-[0.3em] text-white/40">
-                // Rating.Feed
+                {"// Rating.Feed"}
               </p>
               <span aria-hidden="true" className="pointer-events-none absolute right-0 top-0 h-4 w-4 border-r-2 border-t-2 border-accent" />
               <span aria-hidden="true" className="pointer-events-none absolute bottom-0 right-0 h-4 w-4 border-b-2 border-r-2 border-accent" />
@@ -171,7 +171,7 @@ export default function RestaurantPage() {
             {data.latestReview && (
               <article className="mt-10 rounded-2xl border border-white/10 border-l-2 border-l-accent bg-[#0f141a] p-6">
                 <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
-                  // Latest Signal
+                  {"// Latest Signal"}
                 </p>
                 <p className="mt-3 font-mono text-xs text-muted">
                   <span className="text-accent">★ {data.latestReview.rating}</span> / 5 ·{" "}
